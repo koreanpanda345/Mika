@@ -16,8 +16,34 @@ module.exports = class extends EventBase
     async invoke(message)
     {
         if(message.author.bot || message.channel.type === "dm") return;
+        // Checking if the user that was was mentioned is AFK.
+        if(message.mentions.users.size > 0)
+        {
+            if(this.mika.db.has(message.mentions.users.first().id))
+            {
+                this.mika.db.add(`afk_${message.mentions.users.first().id}.pings`, {user: message.author.id, content: message.content});
+                message.channel.send(new MessageEmbed().setTitle(`${message.mentions.members.first().displayName} is AFK! But I will let them know what you sent when they get back.`)
+                .setDescription(`Been AFK since ${new Date(this.mika.db.get(`afk_${message.mentions.users.first().id}.sinceAfk`))}`));
+            }
+        }
+        if(this.mika.db.has(`afk_${message.author.id}`))
+        {
+            
+            let afkEmbed = new MessageEmbed()
+            .setTitle(`I have removed your AFK status!`)
+            .setDescription(`Messages that pinged you`);
+
+            let pings = this.mika.db.get(`afk_${message.author.id}.pings`);
+            pings.forEach(ping => 
+            {
+                afkEmbed.addField(`Member: ${message.guild.members.fetch(ping.user)}`, `Content: ${ping.content}`);
+            });
+            message.channel.send(afkEmbed);
+            message.member.setNickname(message.member.displayName.replace(/\[AFK\]+/g, ""));
+            this.mika.db.delete(`afk_${message.author.id}`);
+        }
         if(!this.mika.db.has(`user_${message.author.id}`))
-            this.mika.db.set(`user_${message.author.id}`, {xp: 0, level: 1, flowers: 100, birthday: '1/1/2020', description: ""});
+            this.mika.db.set(`user_${message.author.id}`, {xp: 0, level: 1, flowers: 100, birthday: '1/1/2020', description: "", votes: 0});
         this.mika.db.add(`user_${message.author.id}.xp`, 1);
         let equation = 50 * (Math.pow(this.mika.db.get(`user_${message.author.id}.level`) + 1, 2)) - (50 * (this.mika.db.get(`user_${message.author.id}.level`) + 1));
         if(this.mika.db.get(`user_${message.author.id}.xp`) >= equation)

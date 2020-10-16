@@ -1,0 +1,15 @@
+                                                ____                 _ __          
+                                               /  _/__  ___ ________(_) /  ___ ____
+                                              _/ // _ \(_-</ __/ __/ / _ \/ -_) __/
+                                             /___/_//_/___/\__/_/ /_/_.__/\__/_/   
+                                          -------------------------------------------
+-----------------------------------------|INFO LOG FILE OF 2020-10-15T22:56:31-07:00|------------------------------------------------
+                                          -------------------------------------------
+(October 15th 2020, 10:56:31 pm) [ C:\Users\korea\repos\Mika\src\index.js ] => Event ready was loaded.
+(October 15th 2020, 10:56:31 pm) [ C:\Users\korea\repos\Mika\src\index.js ] => Event message was loaded.
+(October 15th 2020, 10:56:31 pm) [ C:\Users\korea\repos\Mika\src\index.js ] => Command ping was loaded
+(October 15th 2020, 10:56:31 pm) [ C:\Users\korea\repos\Mika\src\index.js ] => Command profile was loaded
+(October 15th 2020, 10:56:31 pm) [ C:\Users\korea\repos\Mika\src\index.js ] => Command daily was loaded
+(October 15th 2020, 10:56:31 pm) [ C:\Users\korea\repos\Mika\src\index.js ] => Command leaderboard was loaded
+(October 15th 2020, 10:56:31 pm) [ C:\Users\korea\repos\Mika\src\index.js ] => Command help was loaded
+(October 15th 2020, 10:56:32 pm) [ C:\Users\korea\repos\Mika\src\index.js ] => Mika is ready

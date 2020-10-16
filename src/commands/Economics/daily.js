@@ -8,7 +8,7 @@ module.exports = class DailyCommand extends CommandBase
     {
         super({
             name: "daily",
-            descritpion: "Allows you to get 250 Flowers once a day.",
+            descritpion: "Allows you to get 500 Flowers once a day.",
             category: "Economics",
             usage: "daily",
         });
@@ -26,7 +26,7 @@ module.exports = class DailyCommand extends CommandBase
             else if(Date.now() > this.ctx.db.get(`daily_${this.ctx.message.author.id}`))
                 this.ctx.db.delete(`daily_${this.ctx.message.author.id}`);
         }
-        this.ctx.db.add(`user_${this.ctx.message.author.id}.flowers`, 250);
+        this.ctx.db.add(`user_${this.ctx.message.author.id}.flowers`, 500);
         this.ctx.db.set(`daily_${this.ctx.message.author.id}`, (Date.now()) + 86400000);
 
         this.ctx.send(

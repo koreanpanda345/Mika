@@ -41,6 +41,11 @@ module.exports = class ProfileCommand extends CommandBase
                     name: "Flowers",
                     value: user.flowers,
                     inline: true
+                },
+                {
+                    name: 'Votes',
+                    value: user.votes == undefined ? 0 : user.votes,
+                    inline: true
                 }
             ]);
     
@@ -77,6 +82,11 @@ module.exports = class ProfileCommand extends CommandBase
                             {
                                 name: "Flowers",
                                 value: _user.flowers,
+                                inline: true
+                            },
+                            {
+                                name: 'Votes',
+                                value: user.votes == undefined ? 0 : user.votes,
                                 inline: true
                             }
                         ]);

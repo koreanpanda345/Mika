@@ -1,5 +1,5 @@
 {
-  "writeLog": false,
+  "writeLog": true,
   "logPaths": {
     "error": "./Logs/errors",
     "debug": "./Logs/debugs",
