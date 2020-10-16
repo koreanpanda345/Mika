@@ -1,0 +1,40 @@
+{
+  "writeLog": false,
+  "logPaths": {
+    "error": "./Logs/errors",
+    "debug": "./Logs/debugs",
+    "warn": "./Logs/warns",
+    "info": "./Logs/infos",
+    "logs": "./Logs/logs"
+  },
+  "logPatterns": {
+    "error": "(<time>) [ <source> ] => <message>",
+    "debug": "(<time>) [ <source> ] => <message>",
+    "warn": "(<time>) [ <source> ] => <message>",
+    "info": "(<time>) [ <source> ] => <message>",
+    "log": "(<time>) [ <source> ] => <message>"
+  },
+  "logColors": {
+    "error": {
+      "text": "black",
+      "background": "red"
+    },
+    "debug": {
+      "text": "black",
+      "background": "green"
+    },
+    "warn": {
+      "text": "black",
+      "background": "yellow"
+    },
+    "info": {
+      "text": "black",
+      "background": "white"
+    },
+    "log": {
+      "text": "black",
+      "background": "cyan"
+    }
+  },
+  "timePattern": "MMMM Do YYYY, h:mm:ss a"
+}
