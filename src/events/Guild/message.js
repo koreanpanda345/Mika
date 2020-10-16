@@ -19,11 +19,13 @@ module.exports = class extends EventBase
         // Checking if the user that was was mentioned is AFK.
         if(message.mentions.users.size > 0)
         {
-            if(this.mika.db.has(message.mentions.users.first().id))
+            if(this.mika.db.has(`afk_${message.mentions.users.first().id}`))
             {
-                this.mika.db.add(`afk_${message.mentions.users.first().id}.pings`, {user: message.author.id, content: message.content});
+                this.mika.db.push(`afk_${message.mentions.users.first().id}.pings`, {user: message.author.id, content: message.content});
                 message.channel.send(new MessageEmbed().setTitle(`${message.mentions.members.first().displayName} is AFK! But I will let them know what you sent when they get back.`)
-                .setDescription(`Been AFK since ${new Date(this.mika.db.get(`afk_${message.mentions.users.first().id}.sinceAfk`))}`));
+                .setDescription(`Been AFK since ${new Date(this.mika.db.get(`afk_${message.mentions.users.first().id}.sinceAfk`))}`)
+                .addField("Reason", this.mika.db.get(`afk_${message.mentions.users.first().id}.reason`))
+                .setColor("RANDOM"));
             }
         }
         if(this.mika.db.has(`afk_${message.author.id}`))
@@ -31,12 +33,15 @@ module.exports = class extends EventBase
             
             let afkEmbed = new MessageEmbed()
             .setTitle(`I have removed your AFK status!`)
-            .setDescription(`Messages that pinged you`);
+            .setDescription(`Messages that pinged you`)
+            .setColor("RANDOM");
 
             let pings = this.mika.db.get(`afk_${message.author.id}.pings`);
-            pings.forEach(ping => 
+            await pings.forEach(async ping => 
             {
-                afkEmbed.addField(`Member: ${message.guild.members.fetch(ping.user)}`, `Content: ${ping.content}`);
+                console.debug(ping);
+                let user = (await message.guild.members.fetch(ping.user));
+                afkEmbed.addField(`Member: ${user.displayName}`, `Content: ${ping.content}`);
             });
             message.channel.send(afkEmbed);
             message.member.setNickname(message.member.displayName.replace(/\[AFK\]+/g, ""));
