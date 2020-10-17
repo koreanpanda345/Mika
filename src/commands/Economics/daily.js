@@ -32,7 +32,7 @@ module.exports = class DailyCommand extends CommandBase
         this.ctx.send(
             this.ctx.getDefaultEmbed()
             .setTitle(`Daily Reward`)
-            .setDescription(`You received 250 Flowers ${this.ctx.message.author.username}`)
+            .setDescription(`You received 500 Flowers ${this.ctx.message.author.username}`)
         );
     }
 }
