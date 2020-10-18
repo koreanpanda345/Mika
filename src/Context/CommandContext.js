@@ -14,6 +14,12 @@ module.exports = class CommandContext
         this.message = message;
         this.db = mika.db;
         this.args = args;
+        this.user_id = message.author.id;
+        this.channel = message.channel;
+        this.guild = message.guild;
+        this.owners = mika.owners;
+        this.developers = mika.developers;
+        this.logger = mika.logger;
     }
     send(message)
     {
