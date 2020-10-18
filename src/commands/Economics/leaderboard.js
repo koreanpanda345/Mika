@@ -25,7 +25,7 @@ module.exports = class LeaderboardCommand extends CommandBase
         let users = [];
         switch(this.ctx.args[0])
         {
-            case "level":
+            case "levels":
 
 
                 data.forEach(item => 
